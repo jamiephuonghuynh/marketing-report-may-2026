@@ -345,6 +345,112 @@
       color: var(--muted);
     }
 
+
+    .service-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .service-block {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      background: #fff;
+    }
+
+    .service-block.highlight {
+      background: #f7fafc;
+      border-color: #cfe1ea;
+    }
+
+    .service-head {
+      margin: 0 0 18px;
+      font-size: 24px;
+      line-height: 1.18;
+    }
+
+    .service-head .zh {
+      color: var(--ink);
+      font-size: 1.12em;
+      font-weight: 800;
+    }
+
+    .service-head .vi {
+      color: var(--muted);
+      font-size: 0.95em;
+      font-weight: 700;
+    }
+
+    .metric-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .metric-line {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #f8fafc;
+    }
+
+    .metric-line .name {
+      min-width: 0;
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    .metric-line .name .zh {
+      font-size: 1.06em;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .metric-line .name .vi {
+      font-size: 0.95em;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .metric-line .score {
+      color: var(--blue);
+      font-size: 32px;
+      line-height: 1;
+      font-weight: 850;
+      white-space: nowrap;
+      letter-spacing: -0.035em;
+    }
+
+    .ticket-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .ticket-kpi {
+      padding: 18px;
+      border-radius: 18px;
+      background: #f7fafc;
+      border: 1px solid #e4edf2;
+    }
+
+    .ticket-kpi .value {
+      color: var(--blue);
+      font-size: 32px;
+      font-weight: 850;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .ticket-kpi .label {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
     .ticket-note {
       margin-top: 18px;
       padding: 20px 22px;
@@ -390,6 +496,9 @@
       .metric-value { font-size: 42px; }
       .deck { padding: 22px 14px 40px; }
       .chart-box.tall { height: 380px; }
+      .ticket-summary { grid-template-columns: 1fr; }
+      .metric-line .score { font-size: 28px; }
+      .service-head { font-size: 22px; }
     }
 
     @media print {
@@ -477,6 +586,7 @@
     <section class="slide" id="section-3">
       <div class="slide-number">3</div>
       <h1 class="title"><span class="zh">G-Coin 社交平台开通项目</span><span class="vi">Chương trình Mở MXH Sàn G-Coin</span></h1>
+
       <div class="stat-row">
         <div class="mini-stat"><span class="num">150</span><span class="label">Tổng số người tham gia</span></div>
         <div class="mini-stat"><span class="num">16</span><span class="label">Người đạt ≥5 bài / ≈10.6%</span></div>
@@ -517,33 +627,120 @@
 
       <div class="cs-layout">
         <div class="cs-panel">
-          <h1 class="title"><span class="zh">客服表现</span><span class="vi">CS Performance</span></h1>
-          <div class="chart-box" style="margin-bottom: 20px;">
-            <canvas id="responseRateChart"></canvas>
-          </div>
+          <h1 class="title">
+            <span class="zh">客服表现</span>
+            <span class="vi">CS Performance</span>
+          </h1>
 
-          <div class="dense-grid">
-            <div class="dense-metric"><div class="value">6.72s</div><div class="label">Response time: call</div></div>
-            <div class="dense-metric"><div class="value">1h36m</div><div class="label">Response time: facebook</div></div>
-            <div class="dense-metric"><div class="value">28m</div><div class="label">Response time: zalo</div></div>
-            <div class="dense-metric"><div class="value">TBU</div><div class="label">Happy Call in 24h</div></div>
-            <div class="dense-metric"><div class="value">93.5%</div><div class="label">CSAT: call</div></div>
-            <div class="dense-metric"><div class="value">100%</div><div class="label">CSAT: zalo / 7 đánh giá / 33 lượt mời</div></div>
-            <div class="dense-metric"><div class="value">306</div><div class="label">CS ticket</div></div>
-            <div class="dense-metric"><div class="value">95.4%</div><div class="label">Tỷ lệ hoàn thành / 292 ticket</div></div>
-            <div class="dense-metric"><div class="value">16.9%</div><div class="label">Tỷ lệ trễ hẹn / 52 ticket</div></div>
-            <div class="dense-metric"><div class="value">76%</div><div class="label">Warranty completed in 24h</div></div>
+          <div class="service-stack">
+            <article class="service-block highlight">
+              <h2 class="service-head">
+                <span class="zh">响应率</span>
+                <span class="vi">Response Rate</span>
+              </h2>
+              <div class="metric-list">
+                <div class="metric-line">
+                  <div class="name"><span class="zh">电话</span><span class="vi">Call</span></div>
+                  <div class="score">96.7%</div>
+                </div>
+                <div class="metric-line">
+                  <div class="name"><span class="zh">Facebook</span><span class="vi">Facebook</span></div>
+                  <div class="score">92.2%</div>
+                </div>
+                <div class="metric-line">
+                  <div class="name"><span class="zh">Zalo</span><span class="vi">Zalo</span></div>
+                  <div class="score">96.67%</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="service-block">
+              <h2 class="service-head">
+                <span class="zh">响应时间</span>
+                <span class="vi">Response Time</span>
+              </h2>
+              <div class="metric-list">
+                <div class="metric-line">
+                  <div class="name"><span class="zh">电话</span><span class="vi">Call</span></div>
+                  <div class="score">6.72s</div>
+                </div>
+                <div class="metric-line">
+                  <div class="name"><span class="zh">Facebook</span><span class="vi">Facebook</span></div>
+                  <div class="score">1h36m</div>
+                </div>
+                <div class="metric-line">
+                  <div class="name"><span class="zh">Zalo</span><span class="vi">Zalo</span></div>
+                  <div class="score">28m</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="service-block">
+              <h2 class="service-head">
+                <span class="zh">客户满意度</span>
+                <span class="vi">CSAT</span>
+              </h2>
+              <div class="metric-list">
+                <div class="metric-line">
+                  <div class="name"><span class="zh">电话</span><span class="vi">Call</span></div>
+                  <div class="score">93.5%</div>
+                </div>
+                <div class="metric-line">
+                  <div class="name"><span class="zh">Zalo</span><span class="vi">Zalo / 7 lượt đánh giá / 33 lượt mời</span></div>
+                  <div class="score">100%</div>
+                </div>
+              </div>
+            </article>
+
+            <div class="grid-2" style="gap: 18px;">
+              <article class="service-block">
+                <h2 class="service-head">
+                  <span class="zh">24小时回访完成情况</span>
+                  <span class="vi">Happy Call in 24h</span>
+                </h2>
+                <div class="metric-line">
+                  <div class="name"><span class="zh">待补充</span><span class="vi">TBU</span></div>
+                  <div class="score">TBU</div>
+                </div>
+              </article>
+
+              <article class="service-block">
+                <h2 class="service-head">
+                  <span class="zh">24小时保修完成情况</span>
+                  <span class="vi">Warranty Completed in 24h</span>
+                </h2>
+                <div class="metric-line">
+                  <div class="name"><span class="zh">完成率</span><span class="vi">Completion rate</span></div>
+                  <div class="score">76%</div>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
 
         <div class="cs-panel">
-          <h1 class="title"><span class="zh">客服工单分类</span><span class="vi">Phân loại CS Ticket</span></h1>
+          <h1 class="title">
+            <span class="zh">客服工单分类</span>
+            <span class="vi">Phân loại CS Ticket</span>
+          </h1>
+
           <div class="chart-box tall">
             <canvas id="ticketTopChart"></canvas>
           </div>
 
-          <div class="ticket-note">
-            Top 8 nhóm ticket có số lượng cao nhất. Bảng chi tiết đã được lược bỏ để tránh tràn layout và giữ nhịp đọc nhanh.
+          <div class="ticket-summary">
+            <div class="ticket-kpi">
+              <div class="value">306</div>
+              <div class="label"><span class="zh">工单总数</span><span class="vi">CS ticket</span></div>
+            </div>
+            <div class="ticket-kpi">
+              <div class="value">95.4%</div>
+              <div class="label"><span class="zh">完成率</span><span class="vi">Tỷ lệ hoàn thành / 292 ticket</span></div>
+            </div>
+            <div class="ticket-kpi">
+              <div class="value">16.9%</div>
+              <div class="label"><span class="zh">逾期率</span><span class="vi">Tỷ lệ trễ hẹn / 52 ticket</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -678,23 +875,20 @@
         }
       }
     });
-
-    makeBarChart("responseRateChart", ["Call", "Facebook", "Zalo"], [96.7, 92.2, 96.67], "Response rate (%)", false, 100);
-
     makeBarChart(
       "ticketTopChart",
       [
-        "Cộng điểm G-Coin",
-        "Kích hoạt An Gia",
-        "BH trên 5 máy",
-        "Gia hạn D/T card",
-        "Hỗ trợ G-APP khác",
-        "Tiến độ giao quà",
-        "Huỷ D/T card",
-        "Tư vấn RAC"
+        ["G-Coin积分", "Cộng điểm G-Coin"],
+        ["激活An Gia", "Kích hoạt An Gia"],
+        ["5台以上保修激活", "BH trên 5 máy"],
+        ["延长D/T卡激活", "Gia hạn D/T card"],
+        ["其他G-APP支持", "Hỗ trợ G-APP khác"],
+        ["礼品进度查询", "Tiến độ giao quà"],
+        ["取消D/T卡激活", "Huỷ D/T card"],
+        ["RAC产品咨询", "Tư vấn RAC"]
       ],
       [47, 39, 29, 24, 20, 18, 17, 16],
-      "Top 8 CS ticket types",
+      "Top 8 客服工单类型 / Top 8 CS ticket types",
       true,
       50
     );
