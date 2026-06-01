@@ -40,7 +40,7 @@
 
     .slide {
       position: relative;
-      min-height: 820px;
+      min-height: 760px;
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -64,6 +64,7 @@
       font-size: 56px;
       font-weight: 800;
       color: #050505;
+      z-index: 2;
     }
 
     .zh {
@@ -80,13 +81,13 @@
       color: var(--muted);
       font-weight: 450;
     }
-
     .title {
-      font-size: 44px;
+      font-size: 42px;
       line-height: 1.15;
       margin: 0 0 14px;
       color: var(--blue);
       letter-spacing: -0.025em;
+      padding-right: 150px;
     }
 
     .subtitle {
@@ -96,8 +97,8 @@
     }
 
     .section-title {
-      font-size: 34px;
-      margin: 0 0 26px;
+      font-size: 30px;
+      margin: 0 0 22px;
       color: var(--ink);
       letter-spacing: -0.02em;
     }
@@ -121,7 +122,6 @@
       gap: 32px;
       align-items: start;
     }
-
     .card {
       border: 1px solid var(--line);
       border-radius: 22px;
@@ -152,21 +152,22 @@
       align-items: baseline;
       gap: 12px;
       color: var(--blue);
-      font-size: 52px;
+      font-size: 50px;
       line-height: 1;
       font-weight: 800;
       letter-spacing: -0.04em;
+      white-space: nowrap;
     }
 
     .metric-sub {
-      font-size: 24px;
+      font-size: 23px;
       color: var(--muted);
       font-weight: 500;
       letter-spacing: 0;
     }
 
     .large-copy {
-      font-size: 31px;
+      font-size: 29px;
       color: var(--muted);
       line-height: 1.36;
     }
@@ -183,7 +184,6 @@
       flex-direction: column;
       justify-content: space-between;
     }
-
     .agenda-title {
       font-size: 31px;
       margin: 0 0 22px;
@@ -194,7 +194,7 @@
       list-style: none;
       padding: 0;
       margin: 0;
-      font-size: 26px;
+      font-size: 24px;
       color: var(--muted);
     }
 
@@ -217,16 +217,23 @@
       border-radius: 22px;
       padding: 20px;
       background: #fff;
+      overflow: hidden;
     }
 
-    .chart-box.tall { height: 410px; }
+    .chart-box.tall { height: 430px; }
 
     .reason-box {
-      margin-top: 34px;
+      margin-top: 28px;
       padding: 28px 34px;
       border-left: 8px solid var(--blue);
       background: #f7fafc;
       border-radius: 18px;
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 26px;
     }
 
     .stat-row {
@@ -300,50 +307,20 @@
       border-radius: inherit;
     }
 
-    .ticket-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 15px;
-      color: var(--ink);
-      background: #fff;
-      border: 1px solid var(--line);
-    }
-
-    .ticket-table th,
-    .ticket-table td {
-      border-bottom: 1px solid var(--line);
-      padding: 9px 10px;
-      vertical-align: top;
-    }
-
-    .ticket-table th {
-      text-align: left;
-      color: var(--blue);
-      background: #f6fafc;
-      font-size: 14px;
-    }
-
-    .ticket-table td:last-child,
-    .ticket-table th:last-child {
-      text-align: right;
-      width: 64px;
-      font-weight: 700;
-    }
-
     .cs-layout {
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
+      grid-template-columns: 1.35fr 0.85fr;
       gap: 30px;
+      align-items: start;
     }
 
-    .cs-metrics {
-      display: grid;
-      gap: 18px;
+    .cs-panel {
+      min-width: 0;
     }
 
     .dense-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
@@ -352,10 +329,11 @@
       border: 1px solid var(--line);
       border-radius: 18px;
       background: #fff;
+      min-width: 0;
     }
 
     .dense-metric .value {
-      font-size: 33px;
+      font-size: 31px;
       color: var(--blue);
       font-weight: 800;
       line-height: 1;
@@ -365,6 +343,15 @@
     .dense-metric .label {
       font-size: 15px;
       color: var(--muted);
+    }
+
+    .ticket-note {
+      margin-top: 18px;
+      padding: 20px 22px;
+      border-radius: 18px;
+      background: #f7fafc;
+      color: var(--muted);
+      font-size: 18px;
     }
 
     .project-card {
@@ -398,10 +385,11 @@
       .slide { padding: 52px 34px; min-height: auto; }
       .grid-3, .grid-2, .stat-row, .cs-layout, .ai-grid { grid-template-columns: 1fr; }
       .slide-number { width: 96px; height: 82px; font-size: 42px; }
-      .title { font-size: 34px; }
+      .title { font-size: 34px; padding-right: 100px; }
       .large-copy { font-size: 24px; }
       .metric-value { font-size: 42px; }
       .deck { padding: 22px 14px 40px; }
+      .chart-box.tall { height: 380px; }
     }
 
     @media print {
@@ -417,6 +405,7 @@
     }
   </style>
 </head>
+
 <body>
   <main class="deck">
     <section class="slide" id="section-1">
@@ -435,12 +424,14 @@
             <li>Mở MXH Sàn G-Coin</li>
           </ul>
         </article>
+
         <article class="card">
           <h2 class="agenda-title"><span class="zh">客服表现</span><span class="vi">CS Performance</span></h2>
           <ul class="clean">
             <li>CS Performance</li>
           </ul>
         </article>
+
         <article class="card">
           <h2 class="agenda-title"><span class="zh">即将开展项目</span><span class="vi">Upcoming events</span></h2>
           <ul class="clean">
@@ -455,34 +446,30 @@
       <div class="slide-number">2</div>
       <h1 class="title"><span class="zh">Facebook 关键洞察</span><span class="vi">Facebook key insight</span></h1>
 
-      <div class="grid-2">
-        <div>
-          <div class="grid-3">
-            <div class="metric">
-              <div class="metric-label"><span class="zh">浏览量</span><span class="vi">Views</span></div>
-              <div class="metric-value">42.2% <span class="metric-sub">33.4K</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span class="zh">内容互动</span><span class="vi">Content interaction</span></div>
-              <div class="metric-value">12.5% <span class="metric-sub">4.1K</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span class="zh">新增关注</span><span class="vi">Follows</span></div>
-              <div class="metric-value">44% <span class="metric-sub">106</span></div>
-            </div>
+      <div class="insight-grid">
+        <div class="grid-3">
+          <div class="metric">
+            <div class="metric-label"><span class="zh">浏览量</span><span class="vi">Views</span></div>
+            <div class="metric-value">42.2% <span class="metric-sub">33.4K</span></div>
           </div>
 
-          <div class="reason-box">
-            <div class="kicker"><span class="zh">增长原因</span><span class="vi">Lý do tăng trưởng</span></div>
-            <ul class="clean">
-              <li>Chương trình Mở MXH Sàn G-Coin</li>
-              <li>Số lượng bài đăng (video, hình ảnh)</li>
-            </ul>
+          <div class="metric">
+            <div class="metric-label"><span class="zh">内容互动</span><span class="vi">Content interaction</span></div>
+            <div class="metric-value">12.5% <span class="metric-sub">4.1K</span></div>
+          </div>
+
+          <div class="metric">
+            <div class="metric-label"><span class="zh">新增关注</span><span class="vi">Follows</span></div>
+            <div class="metric-value">44% <span class="metric-sub">106</span></div>
           </div>
         </div>
 
-        <div class="chart-box">
-          <canvas id="facebookChart"></canvas>
+        <div class="reason-box">
+          <div class="kicker"><span class="zh">增长原因</span><span class="vi">Lý do tăng trưởng</span></div>
+          <ul class="clean">
+            <li>Chương trình Mở MXH Sàn G-Coin</li>
+            <li>Số lượng bài đăng (video, hình ảnh)</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -490,7 +477,6 @@
     <section class="slide" id="section-3">
       <div class="slide-number">3</div>
       <h1 class="title"><span class="zh">G-Coin 社交平台开通项目</span><span class="vi">Chương trình Mở MXH Sàn G-Coin</span></h1>
-
       <div class="stat-row">
         <div class="mini-stat"><span class="num">150</span><span class="label">Tổng số người tham gia</span></div>
         <div class="mini-stat"><span class="num">16</span><span class="label">Người đạt ≥5 bài / ≈10.6%</span></div>
@@ -502,6 +488,7 @@
         <div class="chart-box tall">
           <canvas id="gcoinParticipationChart"></canvas>
         </div>
+
         <div>
           <div class="card blue">
             <h2 class="section-title"><span class="zh">发布内容质量</span><span class="vi">Chất lượng bài đăng</span></h2>
@@ -527,10 +514,10 @@
 
     <section class="slide" id="section-4">
       <div class="slide-number">4</div>
-      <div class="cs-layout">
-        <div>
-          <h1 class="title"><span class="zh">客服表现</span><span class="vi">CS Performance</span></h1>
 
+      <div class="cs-layout">
+        <div class="cs-panel">
+          <h1 class="title"><span class="zh">客服表现</span><span class="vi">CS Performance</span></h1>
           <div class="chart-box" style="margin-bottom: 20px;">
             <canvas id="responseRateChart"></canvas>
           </div>
@@ -549,40 +536,15 @@
           </div>
         </div>
 
-        <div>
+        <div class="cs-panel">
           <h1 class="title"><span class="zh">客服工单分类</span><span class="vi">Phân loại CS Ticket</span></h1>
-          <div class="chart-box tall" style="margin-bottom: 20px;">
+          <div class="chart-box tall">
             <canvas id="ticketTopChart"></canvas>
           </div>
-          <table class="ticket-table">
-            <thead><tr><th>Loại ticket</th><th>SL</th></tr></thead>
-            <tbody>
-              <tr><td>Sự cố hệ thống khẩn cấp</td><td>4</td></tr>
-              <tr><td>Tài khoản nội bộ</td><td>6</td></tr>
-              <tr><td>Tài khoản khách hàng: Duyệt</td><td>0</td></tr>
-              <tr><td>Tài khoản khách hàng: Tạo / khoá / huỷ / thay đổi thông tin</td><td>11</td></tr>
-              <tr><td>Nhiệm vụ: Duyệt</td><td>0</td></tr>
-              <tr><td>Cộng điểm G-Coin theo yêu cầu</td><td>47</td></tr>
-              <tr><td>Gia hạn kích hoạt Dcard / Tcard</td><td>24</td></tr>
-              <tr><td>Kích hoạt bảo hành trên 5 máy</td><td>29</td></tr>
-              <tr><td>Kích hoạt bảo hành kênh KA</td><td>8</td></tr>
-              <tr><td>Kích hoạt An Gia</td><td>39</td></tr>
-              <tr><td>Duyệt kích hoạt Dcard / Tcard</td><td>11</td></tr>
-              <tr><td>Huỷ kích hoạt Dcard / Tcard</td><td>17</td></tr>
-              <tr><td>Điều chỉnh thông tin Dcard / Tcard đã kích hoạt</td><td>12</td></tr>
-              <tr><td>Kiểm tra Vòng đời sản phẩm ≤ 10 seri</td><td>14</td></tr>
-              <tr><td>Kiểm tra Vòng đời sản phẩm &gt; 10 seri</td><td>0</td></tr>
-              <tr><td>Kiểm tra Tiến độ giao quà</td><td>18</td></tr>
-              <tr><td>Các yêu cầu hỗ trợ G-APP khác</td><td>20</td></tr>
-              <tr><td>Tư vấn mua sản phẩm HA</td><td>4</td></tr>
-              <tr><td>Tư vấn mua sản phẩm RAC</td><td>16</td></tr>
-              <tr><td>Tư vấn mua sản phẩm CAC / LAC</td><td>6</td></tr>
-              <tr><td>Tư vấn mua linh kiện</td><td>11</td></tr>
-              <tr><td>Marketing địa phương</td><td>2</td></tr>
-              <tr><td>Marketing toàn quốc</td><td>0</td></tr>
-              <tr><td>Các yêu cầu hỗ trợ ngoài G-APP khác</td><td>7</td></tr>
-            </tbody>
-          </table>
+
+          <div class="ticket-note">
+            Top 8 nhóm ticket có số lượng cao nhất. Bảng chi tiết đã được lược bỏ để tránh tràn layout và giữ nhịp đọc nhanh.
+          </div>
         </div>
       </div>
     </section>
@@ -637,18 +599,17 @@
   </main>
 
   <script>
-    const blue = '#005f89';
-    const paleBlue = '#8fc6db';
-    const amber = '#c9851a';
-    const red = '#b94b4b';
-    const green = '#2f8f63';
-    const grid = '#e1e6eb';
-    Chart.defaults.font.family = 'Arial, Microsoft YaHei, PingFang SC, sans-serif';
-    Chart.defaults.color = '#5f6670';
+    const blue = "#005f89";
+    const red = "#b94b4b";
+    const green = "#2f8f63";
+    const grid = "#e1e6eb";
 
-    function makeBarChart(id, labels, values, title, horizontal = false) {
+    Chart.defaults.font.family = "Arial, Microsoft YaHei, PingFang SC, sans-serif";
+    Chart.defaults.color = "#5f6670";
+
+    function makeBarChart(id, labels, values, title, horizontal = false, maxValue = null) {
       new Chart(document.getElementById(id), {
-        type: 'bar',
+        type: "bar",
         data: {
           labels,
           datasets: [{
@@ -660,55 +621,82 @@
           }]
         },
         options: {
-          indexAxis: horizontal ? 'y' : 'x',
+          indexAxis: horizontal ? "y" : "x",
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { legend: { display: false }, title: { display: true, text: title, align: 'start', font: { size: 18, weight: 'bold' }, color: blue } },
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: title,
+              align: "start",
+              font: { size: 18, weight: "bold" },
+              color: blue
+            }
+          },
           scales: {
-            x: { beginAtZero: true, grid: { color: grid }, ticks: { callback: value => value + (title.includes('%') || title.includes('rate') ? '%' : '') } },
-            y: { grid: { display: !horizontal, color: grid } }
+            x: {
+              beginAtZero: true,
+              max: horizontal && maxValue ? maxValue : undefined,
+              grid: { color: grid },
+              ticks: {
+                precision: 0,
+                callback: value => title.includes("%") || title.includes("rate") ? value + "%" : value
+              }
+            },
+            y: {
+              beginAtZero: true,
+              max: !horizontal && maxValue ? maxValue : undefined,
+              grid: { display: !horizontal, color: grid },
+              ticks: { precision: 0 }
+            }
           }
         }
       });
     }
 
-    makeBarChart('facebookChart', ['Views', 'Content interaction', 'Follows'], [42.2, 12.5, 44], 'Facebook growth rate (%)');
-
-    new Chart(document.getElementById('gcoinParticipationChart'), {
-      type: 'doughnut',
+    new Chart(document.getElementById("gcoinParticipationChart"), {
+      type: "doughnut",
       data: {
-        labels: ['Đạt ≥5 bài', 'Không đạt <5 bài'],
+        labels: ["Đạt ≥5 bài", "Không đạt <5 bài"],
         datasets: [{ data: [16, 134], backgroundColor: [green, red], borderWidth: 0 }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        cutout: '68%',
+        cutout: "68%",
         plugins: {
-          legend: { position: 'bottom' },
-          title: { display: true, text: 'Tỷ lệ đạt chỉ tiêu tham gia', align: 'start', font: { size: 18, weight: 'bold' }, color: blue },
+          legend: { position: "bottom" },
+          title: {
+            display: true,
+            text: "Tỷ lệ đạt chỉ tiêu tham gia",
+            align: "start",
+            font: { size: 18, weight: "bold" },
+            color: blue
+          },
           tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} người` } }
         }
       }
     });
 
-    makeBarChart('responseRateChart', ['Call', 'Facebook', 'Zalo'], [96.7, 92.2, 96.67], 'Response rate (%)');
+    makeBarChart("responseRateChart", ["Call", "Facebook", "Zalo"], [96.7, 92.2, 96.67], "Response rate (%)", false, 100);
 
     makeBarChart(
-      'ticketTopChart',
+      "ticketTopChart",
       [
-        'Cộng điểm G-Coin',
-        'Kích hoạt An Gia',
-        'BH trên 5 máy',
-        'Gia hạn D/T card',
-        'Hỗ trợ G-APP khác',
-        'Tiến độ giao quà',
-        'Huỷ D/T card',
-        'Tư vấn RAC'
+        "Cộng điểm G-Coin",
+        "Kích hoạt An Gia",
+        "BH trên 5 máy",
+        "Gia hạn D/T card",
+        "Hỗ trợ G-APP khác",
+        "Tiến độ giao quà",
+        "Huỷ D/T card",
+        "Tư vấn RAC"
       ],
       [47, 39, 29, 24, 20, 18, 17, 16],
-      'Top 8 CS ticket types',
-      true
+      "Top 8 CS ticket types",
+      true,
+      50
     );
   </script>
 </body>
