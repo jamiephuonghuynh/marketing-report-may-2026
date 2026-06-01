@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketing Report 01/05/2026 - 28/05/2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #f3f5f7;
+      --paper: #ffffff;
+      --ink: #222831;
+      --muted: #6a6f76;
+      --line: #d8dde3;
+      --blue: #005f89;
+      --blue-soft: #e8f4f8;
+      --green: #2f8f63;
+      --amber: #c9851a;
+      --red: #b94b4b;
+      --shadow: 0 24px 60px rgba(31, 41, 55, 0.10);
+      --radius: 28px;
+      --font: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.35;
+    }
+
+    .deck {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 42px 32px 80px;
+    }
+
+    .slide {
+      position: relative;
+      min-height: 820px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 68px 72px;
+      margin: 0 0 42px;
+      overflow: hidden;
+    }
+
+    .slide-number {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 132px;
+      height: 108px;
+      display: grid;
+      place-items: center;
+      background: #f1f2f4;
+      border-left: 1px solid #89919a;
+      border-bottom: 1px solid #89919a;
+      font-size: 56px;
+      font-weight: 800;
+      color: #050505;
+    }
+
+    .zh {
+      display: block;
+      font-size: 1.13em;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .vi {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 450;
+    }
+
+    .title {
+      font-size: 44px;
+      line-height: 1.15;
+      margin: 0 0 14px;
+      color: var(--blue);
+      letter-spacing: -0.025em;
+    }
+
+    .subtitle {
+      font-size: 30px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .section-title {
+      font-size: 34px;
+      margin: 0 0 26px;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .kicker {
+      color: var(--blue);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+      background: #fff;
+    }
+
+    .card.blue {
+      background: var(--blue-soft);
+      border-color: #c7e4ee;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 26px;
+      background: #fff;
+    }
+
+    .metric-label {
+      font-size: 21px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .metric-value {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      color: var(--blue);
+      font-size: 52px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .metric-sub {
+      font-size: 24px;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .large-copy {
+      font-size: 31px;
+      color: var(--muted);
+      line-height: 1.36;
+    }
+
+    .large-copy strong { color: var(--blue); }
+
+    .agenda {
+      margin-top: 88px;
+    }
+
+    .agenda .card {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .agenda-title {
+      font-size: 31px;
+      margin: 0 0 22px;
+      color: var(--blue);
+    }
+
+    ul.clean {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 26px;
+      color: var(--muted);
+    }
+
+    ul.clean li {
+      margin: 12px 0;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    ul.clean li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+    }
+
+    .chart-box {
+      height: 270px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .chart-box.tall { height: 410px; }
+
+    .reason-box {
+      margin-top: 34px;
+      padding: 28px 34px;
+      border-left: 8px solid var(--blue);
+      background: #f7fafc;
+      border-radius: 18px;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin: 30px 0 28px;
+    }
+
+    .mini-stat {
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .mini-stat .num {
+      display: block;
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .mini-stat .label {
+      font-size: 19px;
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 20px;
+      font-weight: 700;
+      background: var(--blue-soft);
+      color: var(--blue);
+      margin: 8px 10px 8px 0;
+    }
+
+    .badge.warning { background: #fff4df; color: var(--amber); }
+    .badge.danger { background: #fff0f0; color: var(--red); }
+    .badge.success { background: #eaf7ef; color: var(--green); }
+
+    .progress-wrap {
+      margin: 22px 0 8px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .progress {
+      height: 16px;
+      background: #edf0f3;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress > span {
+      display: block;
+      height: 100%;
+      background: var(--blue);
+      border-radius: inherit;
+    }
+
+    .ticket-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .ticket-table th,
+    .ticket-table td {
+      border-bottom: 1px solid var(--line);
+      padding: 9px 10px;
+      vertical-align: top;
+    }
+
+    .ticket-table th {
+      text-align: left;
+      color: var(--blue);
+      background: #f6fafc;
+      font-size: 14px;
+    }
+
+    .ticket-table td:last-child,
+    .ticket-table th:last-child {
+      text-align: right;
+      width: 64px;
+      font-weight: 700;
+    }
+
+    .cs-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 30px;
+    }
+
+    .cs-metrics {
+      display: grid;
+      gap: 18px;
+    }
+
+    .dense-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .dense-metric {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .dense-metric .value {
+      font-size: 33px;
+      color: var(--blue);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .dense-metric .label {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .project-card {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #fff;
+    }
+
+    .project-title {
+      font-size: 28px;
+      color: var(--blue);
+      font-weight: 800;
+      margin: 0 0 20px;
+    }
+
+    .project-meta {
+      font-size: 20px;
+      color: var(--muted);
+      margin: 12px 0;
+    }
+
+    .ai-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 72px;
+    }
+
+    @media (max-width: 1050px) {
+      .slide { padding: 52px 34px; min-height: auto; }
+      .grid-3, .grid-2, .stat-row, .cs-layout, .ai-grid { grid-template-columns: 1fr; }
+      .slide-number { width: 96px; height: 82px; font-size: 42px; }
+      .title { font-size: 34px; }
+      .large-copy { font-size: 24px; }
+      .metric-value { font-size: 42px; }
+      .deck { padding: 22px 14px 40px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .deck { padding: 0; width: 100%; }
+      .slide {
+        box-shadow: none;
+        border-radius: 0;
+        min-height: 100vh;
+        page-break-after: always;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide" id="section-1">
+      <div class="slide-number">1</div>
+      <h1 class="title">
+        <span class="zh">5月营销报告</span>
+        <span class="vi">Marketing report</span>
+      </h1>
+      <p class="subtitle">01/05/2026 - 28/05/2026</p>
+
+      <div class="agenda grid-3">
+        <article class="card blue">
+          <h2 class="agenda-title"><span class="zh">传播</span><span class="vi">Communications</span></h2>
+          <ul class="clean">
+            <li>Facebook Insight</li>
+            <li>Mở MXH Sàn G-Coin</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2 class="agenda-title"><span class="zh">客服表现</span><span class="vi">CS Performance</span></h2>
+          <ul class="clean">
+            <li>CS Performance</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2 class="agenda-title"><span class="zh">即将开展项目</span><span class="vi">Upcoming events</span></h2>
+          <ul class="clean">
+            <li>CAC / LAC customer conference: tháng 7, 9</li>
+            <li>Trade activation: Vòng quay may mắn tháng 6</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="slide" id="section-2">
+      <div class="slide-number">2</div>
+      <h1 class="title"><span class="zh">Facebook 关键洞察</span><span class="vi">Facebook key insight</span></h1>
+
+      <div class="grid-2">
+        <div>
+          <div class="grid-3">
+            <div class="metric">
+              <div class="metric-label"><span class="zh">浏览量</span><span class="vi">Views</span></div>
+              <div class="metric-value">42.2% <span class="metric-sub">33.4K</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span class="zh">内容互动</span><span class="vi">Content interaction</span></div>
+              <div class="metric-value">12.5% <span class="metric-sub">4.1K</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span class="zh">新增关注</span><span class="vi">Follows</span></div>
+              <div class="metric-value">44% <span class="metric-sub">106</span></div>
+            </div>
+          </div>
+
+          <div class="reason-box">
+            <div class="kicker"><span class="zh">增长原因</span><span class="vi">Lý do tăng trưởng</span></div>
+            <ul class="clean">
+              <li>Chương trình Mở MXH Sàn G-Coin</li>
+              <li>Số lượng bài đăng (video, hình ảnh)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <canvas id="facebookChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="section-3">
+      <div class="slide-number">3</div>
+      <h1 class="title"><span class="zh">G-Coin 社交平台开通项目</span><span class="vi">Chương trình Mở MXH Sàn G-Coin</span></h1>
+
+      <div class="stat-row">
+        <div class="mini-stat"><span class="num">150</span><span class="label">Tổng số người tham gia</span></div>
+        <div class="mini-stat"><span class="num">16</span><span class="label">Người đạt ≥5 bài / ≈10.6%</span></div>
+        <div class="mini-stat"><span class="num">3</span><span class="label">Người đạt ≥10 bài</span></div>
+        <div class="mini-stat"><span class="num">134</span><span class="label">Không đạt chỉ tiêu / ≈89.4%</span></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="chart-box tall">
+          <canvas id="gcoinParticipationChart"></canvas>
+        </div>
+        <div>
+          <div class="card blue">
+            <h2 class="section-title"><span class="zh">发布内容质量</span><span class="vi">Chất lượng bài đăng</span></h2>
+            <p class="large-copy">
+              Tổng số bài đăng: <strong>351 bài</strong><br />
+              Bài không hợp lệ: <strong>94 bài / ≈26.8%</strong>
+            </p>
+            <div class="progress-wrap">
+              <div class="progress-label"><span>Bài không hợp lệ</span><span>26.8%</span></div>
+              <div class="progress"><span style="width: 26.8%"></span></div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: 24px;">
+            <h2 class="section-title"><span class="zh">随机抽查结果</span><span class="vi">Kiểm tra ngẫu nhiên 50 bài đăng</span></h2>
+            <span class="badge danger">6 bài chất lượng thấp</span>
+            <span class="badge warning">6/50 ≈ 12%</span>
+            <p class="large-copy" style="margin-top: 16px;">Lý do chất lượng thấp: <strong>phản cảm, spam</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="section-4">
+      <div class="slide-number">4</div>
+      <div class="cs-layout">
+        <div>
+          <h1 class="title"><span class="zh">客服表现</span><span class="vi">CS Performance</span></h1>
+
+          <div class="chart-box" style="margin-bottom: 20px;">
+            <canvas id="responseRateChart"></canvas>
+          </div>
+
+          <div class="dense-grid">
+            <div class="dense-metric"><div class="value">6.72s</div><div class="label">Response time: call</div></div>
+            <div class="dense-metric"><div class="value">1h36m</div><div class="label">Response time: facebook</div></div>
+            <div class="dense-metric"><div class="value">28m</div><div class="label">Response time: zalo</div></div>
+            <div class="dense-metric"><div class="value">TBU</div><div class="label">Happy Call in 24h</div></div>
+            <div class="dense-metric"><div class="value">93.5%</div><div class="label">CSAT: call</div></div>
+            <div class="dense-metric"><div class="value">100%</div><div class="label">CSAT: zalo / 7 đánh giá / 33 lượt mời</div></div>
+            <div class="dense-metric"><div class="value">306</div><div class="label">CS ticket</div></div>
+            <div class="dense-metric"><div class="value">95.4%</div><div class="label">Tỷ lệ hoàn thành / 292 ticket</div></div>
+            <div class="dense-metric"><div class="value">16.9%</div><div class="label">Tỷ lệ trễ hẹn / 52 ticket</div></div>
+            <div class="dense-metric"><div class="value">76%</div><div class="label">Warranty completed in 24h</div></div>
+          </div>
+        </div>
+
+        <div>
+          <h1 class="title"><span class="zh">客服工单分类</span><span class="vi">Phân loại CS Ticket</span></h1>
+          <div class="chart-box tall" style="margin-bottom: 20px;">
+            <canvas id="ticketTopChart"></canvas>
+          </div>
+          <table class="ticket-table">
+            <thead><tr><th>Loại ticket</th><th>SL</th></tr></thead>
+            <tbody>
+              <tr><td>Sự cố hệ thống khẩn cấp</td><td>4</td></tr>
+              <tr><td>Tài khoản nội bộ</td><td>6</td></tr>
+              <tr><td>Tài khoản khách hàng: Duyệt</td><td>0</td></tr>
+              <tr><td>Tài khoản khách hàng: Tạo / khoá / huỷ / thay đổi thông tin</td><td>11</td></tr>
+              <tr><td>Nhiệm vụ: Duyệt</td><td>0</td></tr>
+              <tr><td>Cộng điểm G-Coin theo yêu cầu</td><td>47</td></tr>
+              <tr><td>Gia hạn kích hoạt Dcard / Tcard</td><td>24</td></tr>
+              <tr><td>Kích hoạt bảo hành trên 5 máy</td><td>29</td></tr>
+              <tr><td>Kích hoạt bảo hành kênh KA</td><td>8</td></tr>
+              <tr><td>Kích hoạt An Gia</td><td>39</td></tr>
+              <tr><td>Duyệt kích hoạt Dcard / Tcard</td><td>11</td></tr>
+              <tr><td>Huỷ kích hoạt Dcard / Tcard</td><td>17</td></tr>
+              <tr><td>Điều chỉnh thông tin Dcard / Tcard đã kích hoạt</td><td>12</td></tr>
+              <tr><td>Kiểm tra Vòng đời sản phẩm ≤ 10 seri</td><td>14</td></tr>
+              <tr><td>Kiểm tra Vòng đời sản phẩm &gt; 10 seri</td><td>0</td></tr>
+              <tr><td>Kiểm tra Tiến độ giao quà</td><td>18</td></tr>
+              <tr><td>Các yêu cầu hỗ trợ G-APP khác</td><td>20</td></tr>
+              <tr><td>Tư vấn mua sản phẩm HA</td><td>4</td></tr>
+              <tr><td>Tư vấn mua sản phẩm RAC</td><td>16</td></tr>
+              <tr><td>Tư vấn mua sản phẩm CAC / LAC</td><td>6</td></tr>
+              <tr><td>Tư vấn mua linh kiện</td><td>11</td></tr>
+              <tr><td>Marketing địa phương</td><td>2</td></tr>
+              <tr><td>Marketing toàn quốc</td><td>0</td></tr>
+              <tr><td>Các yêu cầu hỗ trợ ngoài G-APP khác</td><td>7</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="section-5">
+      <div class="slide-number">5</div>
+      <h1 class="title">
+        <span class="zh">工作效率优化：建设 AI 结合系统</span>
+        <span class="vi">Tối ưu hiệu suất công việc: Xây dựng hệ thống kết hợp AI</span>
+      </h1>
+
+      <div class="ai-grid">
+        <article class="project-card">
+          <h2 class="project-title">CS Ticket System</h2>
+          <p class="project-meta">Phase 1: launched 04/05/2026</p>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Phase 1</span><span>100%</span></div>
+            <div class="progress"><span style="width: 100%"></span></div>
+          </div>
+          <p class="project-meta">Phase 2: expected launch 05/06/2026</p>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Phase 2</span><span>60%</span></div>
+            <div class="progress"><span style="width: 60%"></span></div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <h2 class="project-title">Operations Engine</h2>
+          <p class="project-meta">Phase 1: launched 01/05/2026</p>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Phase 1</span><span>100%</span></div>
+            <div class="progress"><span style="width: 100%"></span></div>
+          </div>
+          <p class="project-meta">Phase 2: expected launch 06/06/2026</p>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Phase 2</span><span>80%</span></div>
+            <div class="progress"><span style="width: 80%"></span></div>
+          </div>
+        </article>
+
+        <article class="project-card blue">
+          <h2 class="project-title">Gree Content Engine</h2>
+          <p class="project-meta">Launched 16/05/2026</p>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Completion</span><span>100%</span></div>
+            <div class="progress"><span style="width: 100%"></span></div>
+          </div>
+          <p class="project-meta"><span class="badge success">100% launched</span></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const blue = '#005f89';
+    const paleBlue = '#8fc6db';
+    const amber = '#c9851a';
+    const red = '#b94b4b';
+    const green = '#2f8f63';
+    const grid = '#e1e6eb';
+    Chart.defaults.font.family = 'Arial, Microsoft YaHei, PingFang SC, sans-serif';
+    Chart.defaults.color = '#5f6670';
+
+    function makeBarChart(id, labels, values, title, horizontal = false) {
+      new Chart(document.getElementById(id), {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: title,
+            data: values,
+            backgroundColor: blue,
+            borderRadius: 10,
+            barThickness: horizontal ? 22 : 42
+          }]
+        },
+        options: {
+          indexAxis: horizontal ? 'y' : 'x',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false }, title: { display: true, text: title, align: 'start', font: { size: 18, weight: 'bold' }, color: blue } },
+          scales: {
+            x: { beginAtZero: true, grid: { color: grid }, ticks: { callback: value => value + (title.includes('%') || title.includes('rate') ? '%' : '') } },
+            y: { grid: { display: !horizontal, color: grid } }
+          }
+        }
+      });
+    }
+
+    makeBarChart('facebookChart', ['Views', 'Content interaction', 'Follows'], [42.2, 12.5, 44], 'Facebook growth rate (%)');
+
+    new Chart(document.getElementById('gcoinParticipationChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Đạt ≥5 bài', 'Không đạt <5 bài'],
+        datasets: [{ data: [16, 134], backgroundColor: [green, red], borderWidth: 0 }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '68%',
+        plugins: {
+          legend: { position: 'bottom' },
+          title: { display: true, text: 'Tỷ lệ đạt chỉ tiêu tham gia', align: 'start', font: { size: 18, weight: 'bold' }, color: blue },
+          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} người` } }
+        }
+      }
+    });
+
+    makeBarChart('responseRateChart', ['Call', 'Facebook', 'Zalo'], [96.7, 92.2, 96.67], 'Response rate (%)');
+
+    makeBarChart(
+      'ticketTopChart',
+      [
+        'Cộng điểm G-Coin',
+        'Kích hoạt An Gia',
+        'BH trên 5 máy',
+        'Gia hạn D/T card',
+        'Hỗ trợ G-APP khác',
+        'Tiến độ giao quà',
+        'Huỷ D/T card',
+        'Tư vấn RAC'
+      ],
+      [47, 39, 29, 24, 20, 18, 17, 16],
+      'Top 8 CS ticket types',
+      true
+    );
+  </script>
+</body>
+</html>
